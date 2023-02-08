@@ -1,4 +1,4 @@
-# newman-reporter-slack
+# newman-reporter-line
 
 A [newman](https://github.com/postmanlabs/newman) reporter for [Line](https://notify-bot.line.me/en/)
 

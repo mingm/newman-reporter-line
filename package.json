@@ -1,32 +1,33 @@
 {
-  "name": "@mingm\newman-reporter-line",
+  "name": "@mingm/newman-reporter-line",
   "version": "1.0.0",
-  "description": "A newman reporter for line",
+  "description": "A [newman](https://github.com/postmanlabs/newman) reporter for [Line](https://notify-bot.line.me/en/)",
   "main": "index.js",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "line-notify-nodejs": "^1.0.1",
+    "parse-ms": "^1.0.1",
+    "follow-redirects": "^1.15.2",
+    "pretty-ms": "^3.2.0",
+    "prettier": "^1.18.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier --write index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mingm/newman-reporter-line"
+    "url": "git+https://github.com/mingm/newman-reporter-line.git"
   },
   "keywords": [
     "newman",
     "postman",
-    "slack"
+    "line"
   ],
-  "author": "ming_maneerat@hotmail.com",
+  "author": "Ming Maneerat",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mingm/newman-reporter-line/issues"
   },
-  "homepage": "https://github.com/mingm/newman-reporter-line#readme",
-  "dependencies": {
-    "line-notify-nodejs": "1.0.1",
-    "pretty-ms": "^3.2.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.18.2"
-  }
+  "homepage": "https://github.com/mingm/newman-reporter-line#readme"
 }

@@ -6,7 +6,7 @@ newman run
 
 ## Installation
 
-```npm install @mingm/newman-reporter-line```
+```npm install -g newman-reporter-line```
 
 ## Usage
 

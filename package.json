@@ -1,5 +1,5 @@
 {
-  "name": "@mingm/newman-reporter-line",
+  "name": "newman-reporter-line",
   "version": "1.0.0",
   "description": "A [newman](https://github.com/postmanlabs/newman) reporter for [Line](https://notify-bot.line.me/en/)",
   "main": "index.js",

@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-line",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A [newman](https://github.com/postmanlabs/newman) reporter for [Line](https://notify-bot.line.me/en/)",
   "main": "index.js",
   "dependencies": {

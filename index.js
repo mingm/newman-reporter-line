@@ -15,17 +15,37 @@ class LineReporter {
             let run = summary.run;
             let totalFailures = summary.run.failures;
 
-            let text = 'Alert:';
+            let text = '\n\nRun:' + summary.collection.name;
+			text += '\nEnv: ' + summary.environment.name;
+			text += '\n\nResult: ';
+			text += '\nTotal of script: ' + run.stats['testScripts'].total;
+			text += '\nTotal of failed script: ' + run.stats['testScripts'].failed;
+			text += '\n\nTotal of assertions: ' + run.stats['assertions'].total;
+			text += '\nTotal of failed assertions: ' + run.stats['assertions'].failed;
+
+			text += '\n\nAlert:';
 
             for (let failure of totalFailures) {
-                text += '\n\nCase: ' + failure.error.test;
+                text += '\nCase: ' + failure.error.test;
             }
+			let message;
+			if (totalFailures) {
+				message = {
+				  message: text,
+				  stickerPackageId: 11538,
+				  stickerId: 51626518
+				}
+			} else {
+				message = {
+				  message: text,
+				  stickerPackageId: 11537,
+				  stickerId: 52002740
+				}
+			}
 
             const lineNotify = require('line-notify-nodejs')(token);
 
-            lineNotify.notify({
-              message: text,
-            }).then(() => {
+            lineNotify.notify(message).then(() => {
               console.log('send completed!');
             });
 

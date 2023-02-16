@@ -2,7 +2,8 @@
 class LineReporter {
     constructor(emitter, reporterOptions) {
         const token = process.env.LINE_TOKEN || reporterOptions.token;
-        const result = process.env.LINE_SHOW_RESULT || reporterOptions.showresult;
+        const summaryFlag = process.env.LINE_SUMMARY || reporterOptions.summary;
+        const resultFlag = process.env.LINE_RESULT || reporterOptions.result;
 
         if (!token) {
             console.log('please provide Line token');
@@ -14,17 +15,29 @@ class LineReporter {
                 return;
             }
             let run = summary.run;
+			let executions = summary.run.executions;
             let totalFailures = summary.run.failures;
 
             let text = '\n\nRun: ' + summary.collection.name;
 			text += '\nEnv: ' + summary.environment.name;
 
-            if (result) {
-                text += '\n\nResult: ';
+            if (summaryFlag) {
+                text += '\n\nSummary: ';
                 text += '\nTotal of script: ' + run.stats['testScripts'].total;
                 text += '\nTotal of failed script: ' + run.stats['testScripts'].failed;
                 text += '\n\nTotal of assertions: ' + run.stats['assertions'].total;
                 text += '\nTotal of failed assertions: ' + run.stats['assertions'].failed;
+            }
+
+            if (resultFlag) {
+                text += '\n\nResult: ';
+                for (let execution of executions) {
+                    for (let item of execution.assertions) {
+                        if (item.error == null) {
+							text += '\nCase: ' + item.assertion;
+                        }
+                    }
+                }
             }
 
 			let message;

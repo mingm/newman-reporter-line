@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.0.3
+- Add toggle to show summary and result of test case
+
 ## v1.0.2
 - fix bug checking failed case
 - add toogle to show/hide result of text case

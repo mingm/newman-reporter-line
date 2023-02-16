@@ -2,6 +2,7 @@
 class LineReporter {
     constructor(emitter, reporterOptions) {
         const token = process.env.LINE_TOKEN || reporterOptions.token;
+        const result = process.env.LINE_SHOW_RESULT || reporterOptions.showresult;
 
         if (!token) {
             console.log('please provide Line token');
@@ -15,26 +16,32 @@ class LineReporter {
             let run = summary.run;
             let totalFailures = summary.run.failures;
 
-            let text = '\n\nRun:' + summary.collection.name;
+            let text = '\n\nRun: ' + summary.collection.name;
 			text += '\nEnv: ' + summary.environment.name;
-			text += '\n\nResult: ';
-			text += '\nTotal of script: ' + run.stats['testScripts'].total;
-			text += '\nTotal of failed script: ' + run.stats['testScripts'].failed;
-			text += '\n\nTotal of assertions: ' + run.stats['assertions'].total;
-			text += '\nTotal of failed assertions: ' + run.stats['assertions'].failed;
 
-			text += '\n\nAlert:';
-
-            for (let failure of totalFailures) {
-                text += '\nCase: ' + failure.error.test;
+            if (result) {
+                text += '\n\nResult: ';
+                text += '\nTotal of script: ' + run.stats['testScripts'].total;
+                text += '\nTotal of failed script: ' + run.stats['testScripts'].failed;
+                text += '\n\nTotal of assertions: ' + run.stats['assertions'].total;
+                text += '\nTotal of failed assertions: ' + run.stats['assertions'].failed;
             }
+
 			let message;
-			if (totalFailures) {
+			if (totalFailures.length > 0) {
+
+                text += '\n\nAlert:';
+
+                for (let failure of totalFailures) {
+                    text += '\nCase: ' + failure.error.test;
+                }
+
 				message = {
 				  message: text,
 				  stickerPackageId: 11538,
 				  stickerId: 51626518
 				}
+
 			} else {
 				message = {
 				  message: text,
